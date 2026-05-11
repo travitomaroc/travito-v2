@@ -1,9 +1,12 @@
-// ================================================================
-//  TRAVITO MAROC — ROOT APP
-//  Entry point. Loads CEO Agent (top of hierarchy).
-//  All agents are accessible through the hierarchy.
-// ================================================================
-import CEO from './clevel/CEO';
 export default function App() {
-  return <CEO />;
+  return (
+    <main style={{ padding: 40, fontFamily: "Arial, sans-serif" }}>
+      <h1>Travito V2</h1>
+      <p>Marketplace rebuild started successfully.</p>
+
+      <a href="/annonces">
+        Go to annonces
+      </a>
+    </main>
+  );
 }
