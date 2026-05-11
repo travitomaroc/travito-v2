@@ -1,0 +1,74 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "0 8 * * 1-5"
+    },
+    {
+      "path": "/api/cron",
+      "schedule": "0 21 * * 1-5"
+    },
+    {
+      "path": "/api/events-checker",
+      "schedule": "0 9 1 * *"
+    },
+    {
+      "path": "/api/self-improve",
+      "schedule": "0 10 1 * *"
+    },
+    {
+      "path": "/api/youtube?action=weekly_learn",
+      "schedule": "0 7 * * 1"
+    },
+    {
+      "path": "/api/events-post",
+      "schedule": "30 7 * * *"
+    },
+    {
+      "path": "/api/engage",
+      "schedule": "0 9 * * 1-5"
+    },
+    {
+      "path": "/api/engage",
+      "schedule": "0 18 * * 1-5"
+    },
+    {
+      "path": "/api/seo-agent?action=fetch_data",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/seo-agent?action=monitoring",
+      "schedule": "30 7 * * 1"
+    },
+    {
+      "path": "/api/analytics?force=true",
+      "schedule": "0 7 * * 1"
+    }
+  ],
+  "functions": {
+    "api/cron.js": {
+      "maxDuration": 60
+    },
+    "api/engage.js": {
+      "maxDuration": 60
+    },
+    "api/events-checker.js": {
+      "maxDuration": 60
+    },
+    "api/events-post.js": {
+      "maxDuration": 60
+    },
+    "api/self-improve.js": {
+      "maxDuration": 60
+    },
+    "api/youtube.js": {
+      "maxDuration": 60
+    },
+    "api/seo-agent.js": {
+      "maxDuration": 60
+    },
+    "api/analytics.js": {
+      "maxDuration": 30
+    }
+  }
+}
