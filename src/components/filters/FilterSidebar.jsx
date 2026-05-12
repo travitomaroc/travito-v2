@@ -1,6 +1,9 @@
 import { categories, commonFilters } from "../../data/seed/taxonomy";
 
-export default function FilterSidebar() {
+export default function FilterSidebar({
+  selectedCategory,
+  onSelectCategory,
+}) { 
   return (
     <aside
       style={{
@@ -26,17 +29,25 @@ export default function FilterSidebar() {
 
         <div style={{ marginTop: 10, display: "grid", gap: 8 }}>
           {categories.map((category) => (
-            <button
-              key={category.slug}
-              style={{
-                textAlign: "left",
-                padding: "10px 12px",
-                borderRadius: 10,
-                border: "1px solid #ddd",
-                background: "#fafafa",
-                cursor: "pointer",
-              }}
-            >
+<button
+  key={category.slug}
+  onClick={() =>
+    onSelectCategory(
+      selectedCategory === category.slug ? null : category.slug
+    )
+  }
+  style={{
+    textAlign: "left",
+    padding: "10px 12px",
+    borderRadius: 10,
+    border: "1px solid #ddd",
+    background:
+      selectedCategory === category.slug ? "#ffefe5" : "#fafafa",
+    cursor: "pointer",
+  }}
+>
+  {category.label}
+</button>
               {category.label}
             </button>
           ))}
