@@ -1,70 +1,43 @@
 export default function ListingCard({ listing }) {
   return (
-    <article
-      style={{
-        border: "1px solid #e5e5e5",
-        borderRadius: 16,
-        overflow: "hidden",
-        background: "#fff",
-      }}
-    >
-      <div
-        style={{
-          height: 180,
-          background: "#f1f1f1",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 14,
-          color: "#666",
-        }}
-      >
-        Photo
+    <article className="travito-card">
+      <div className="travito-card-image">
+        {listing.image ? (
+          <img
+            src={listing.image}
+            alt={listing.title}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        ) : (
+          "Photo"
+        )}
       </div>
 
-      <div style={{ padding: 14 }}>
-        <div
-          style={{
-            fontSize: 13,
-            color: "#777",
-            marginBottom: 8,
-            textTransform: "capitalize",
-          }}
-        >
+      <div className="travito-card-body">
+        <div className="travito-card-category">
           {listing.category}
         </div>
 
-        <h3
-          style={{
-            margin: 0,
-            fontSize: 18,
-            lineHeight: 1.4,
-          }}
-        >
+        <h3 className="travito-card-title">
           {listing.title}
         </h3>
 
-        <p
-          style={{
-            marginTop: 10,
-            marginBottom: 14,
-            color: "#666",
-            fontSize: 14,
-          }}
-        >
-          {listing.city}
-          {listing.neighborhood
-            ? ` • ${listing.neighborhood}`
-            : ""}
-        </p>
+        <div className="travito-card-location">
+          {listing.city} • {listing.district}
+        </div>
 
-        <strong
-          style={{
-            fontSize: 20,
-          }}
-        >
-          {listing.price.toLocaleString()} {listing.currency}
-        </strong>
+        <div className="travito-card-price">
+          {listing.price}
+        </div>
+
+        <div className="travito-card-meta">
+          <span>Depuis 5 jours</span>
+          <span>{listing.views || 0} vues</span>
+        </div>
       </div>
     </article>
   );
