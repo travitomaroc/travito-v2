@@ -1,7 +1,11 @@
 import ListingsBrowser from "../../src/features/listings/ListingsBrowser";
+import SearchHeader from "../../src/components/layout/SearchHeader";
 
 export default function AnnoncesPage() {
   return (
+
+<>
+  <SearchHeader />
     <main
       style={{
         padding: 24,
@@ -12,6 +16,9 @@ export default function AnnoncesPage() {
     >
       <h1 style={{ marginBottom: 24 }}>Annonces</h1>
       <ListingsBrowser />
-    </main>
+
+</main>
+</>
+
   );
 }
