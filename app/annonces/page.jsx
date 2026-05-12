@@ -1,5 +1,5 @@
-import ListingCard from "@/src/components/listings/ListingCard";
-import { listings } from "@/src/data/seed/listings";
+import ListingCard from "../../src/components/listings/ListingCard";
+import { listings } from "../../src/data/seed/listings";
 
 export default function AnnoncesPage() {
   return (
