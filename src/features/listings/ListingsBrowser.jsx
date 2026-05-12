@@ -1,47 +1,54 @@
 "use client";
 
-import { useState } from "react";
-import ListingCard from "../../components/listings/ListingCard";
+import { useMemo, useState } from "react";
+
 import FilterSidebar from "../../components/filters/FilterSidebar";
+import ListingGrid from "../../components/listings/ListingGrid";
+
 import { listings } from "../../data/seed/listings";
 
-export default function ListingsBrowser() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+export default function ListingsBrowser({
+  categories,
+}) {
+  const [selectedCategory, setSelectedCategory] =
+    useState(null);
 
-  const filteredListings = selectedCategory
-    ? listings.filter((listing) => listing.category === selectedCategory)
-    : listings;
+  const filteredListings = useMemo(() => {
+    if (!selectedCategory) return listings;
+
+    return listings.filter(
+      (listing) =>
+        listing.category === selectedCategory
+    );
+  }, [selectedCategory]);
 
   return (
-    <section
+    <div
       style={{
-        display: "flex",
-        gap: 24,
-        alignItems: "flex-start",
+        display: "grid",
+        gridTemplateColumns: "280px 1fr",
+        gap: 20,
+        alignItems: "start",
       }}
     >
       <FilterSidebar
+        categories={categories}
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
       />
 
-      <section style={{ flex: 1 }}>
-        <div style={{ marginBottom: 20 }}>
-          <strong>{filteredListings.length} résultats</strong>
-        </div>
-
+      <div>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: 20,
+            marginBottom: 18,
+            fontWeight: 700,
           }}
         >
-          {filteredListings.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
-          ))}
+          {filteredListings.length} résultats
         </div>
-      </section>
-    </section>
+
+        <ListingGrid listings={filteredListings} />
+      </div>
+    </div>
   );
 }

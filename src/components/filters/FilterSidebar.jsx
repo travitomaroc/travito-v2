@@ -1,55 +1,97 @@
-import { categories, commonFilters } from "../../data/seed/taxonomy";
+"use client";
+
+import TaxonomyIcon from "../ui/TaxonomyIcon";
 
 export default function FilterSidebar({
+  categories,
   selectedCategory,
   onSelectCategory,
-}) { 
+}) {
   return (
-    <aside
-      style={{
-        width: 280,
-        background: "#fff",
-        border: "1px solid #e5e5e5",
-        borderRadius: 16,
-        padding: 20,
-        position: "sticky",
-        top: 20,
-      }}
-    >
-      <h3>Filtres</h3>
+    <aside className="filter-sidebar">
+      <div className="filter-search">
+        <input placeholder="Recherche..." />
+        <button>OK</button>
+      </div>
 
-      {commonFilters.map((filter) => (
-        <div key={filter.key} style={{ marginTop: 18 }}>
-          <strong>{filter.label}</strong>
-        </div>
-      ))}
+      <div className="filter-row">
+        <span>Catégorie</span>
+        <span>⌄</span>
+      </div>
 
-      <div style={{ marginTop: 24 }}>
-        <strong>Catégories</strong>
+      <div
+        style={{
+          padding: 14,
+          display: "grid",
+          gap: 10,
+        }}
+      >
+        {categories.map((category) => {
+          const active =
+            selectedCategory === category.slug;
 
-        <div style={{ marginTop: 10, display: "grid", gap: 8 }}>
-          {categories.map((category) => (
-<button
-  key={category.slug}
-  onClick={() =>
-    onSelectCategory(
-      selectedCategory === category.slug ? null : category.slug
-    )
-  }
-  style={{
-    textAlign: "left",
-    padding: "10px 12px",
-    borderRadius: 10,
-    border: "1px solid #ddd",
-    background:
-      selectedCategory === category.slug ? "#ffefe5" : "#fafafa",
-    cursor: "pointer",
-  }}
->
-              {category.label}
+          return (
+            <button
+              key={category.id}
+              onClick={() =>
+                onSelectCategory(
+                  active ? null : category.slug
+                )
+              }
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                border: active
+                  ? "2px solid #f26522"
+                  : "1px solid #ddd",
+                background: active
+                  ? "#fff4ee"
+                  : "#fff",
+                borderRadius: 10,
+                padding: "10px 12px",
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              <TaxonomyIcon
+                src={category.icon}
+                alt={category.label}
+                active={active}
+                size={24}
+              />
+
+              <span
+                style={{
+                  fontWeight: active ? 700 : 500,
+                }}
+              >
+                {category.label}
+              </span>
             </button>
-          ))}
+          );
+        })}
+      </div>
+
+      <div className="filter-price">
+        <div className="filter-price-title">
+          Prix
         </div>
+
+        <div className="price-inputs">
+          <input placeholder="Min" />
+          <input placeholder="Max" />
+        </div>
+      </div>
+
+      <div className="toggle-row">
+        <div className="toggle-pill" />
+        <span>Avec photo</span>
+      </div>
+
+      <div className="toggle-row">
+        <div className="toggle-pill" />
+        <span>Avec prix</span>
       </div>
     </aside>
   );
