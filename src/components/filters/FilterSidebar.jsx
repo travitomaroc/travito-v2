@@ -46,8 +46,6 @@ export default function FilterSidebar({
     cursor: "pointer",
   }}
 >
-  {category.label}
-</button>
               {category.label}
             </button>
           ))}
