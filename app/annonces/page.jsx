@@ -1,53 +1,74 @@
+import ListingCard from "@/src/components/listings/ListingCard";
+import { listings } from "@/src/data/seed/listings";
+
 export default function AnnoncesPage() {
   return (
-    <main style={{ padding: "24px", fontFamily: "Arial, sans-serif" }}>
-      <h1>Annonces</h1>
+    <main
+      style={{
+        padding: 24,
+        fontFamily: "Arial, sans-serif",
+        background: "#fafafa",
+        minHeight: "100vh",
+      }}
+    >
+      <h1 style={{ marginBottom: 24 }}>
+        Annonces
+      </h1>
 
-      <section style={{ display: "flex", gap: 16, marginTop: 24 }}>
-        <aside style={{ width: 280, border: "1px solid #ddd", padding: 16 }}>
+      <section
+        style={{
+          display: "flex",
+          gap: 24,
+          alignItems: "flex-start",
+        }}
+      >
+        <aside
+          style={{
+            width: 280,
+            background: "#fff",
+            border: "1px solid #e5e5e5",
+            borderRadius: 16,
+            padding: 20,
+            position: "sticky",
+            top: 20,
+          }}
+        >
           <h3>Filtres</h3>
-          <p>Catégorie</p>
-          <p>Ville</p>
-          <p>Prix</p>
-          <p>Avec photo</p>
+
+          <div style={{ marginTop: 20 }}>
+            <p>Catégorie</p>
+            <p>Ville</p>
+            <p>Prix</p>
+            <p>Avec photo</p>
+          </div>
         </aside>
 
         <section style={{ flex: 1 }}>
-          <div style={{ marginBottom: 16 }}>
-            <strong>Résultats</strong>
+          <div
+            style={{
+              marginBottom: 20,
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <strong>
+              {listings.length} résultats
+            </strong>
           </div>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-            gap: 16
-          }}>
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <article
-                key={item}
-                style={{
-                  border: "1px solid #ddd",
-                  borderRadius: 12,
-                  overflow: "hidden",
-                  background: "#fff"
-                }}
-              >
-                <div style={{
-                  height: 160,
-                  background: "#eee",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}>
-                  Photo
-                </div>
-
-                <div style={{ padding: 12 }}>
-                  <h3 style={{ margin: "0 0 8px" }}>Annonce exemple</h3>
-                  <p style={{ margin: 0 }}>Casablanca</p>
-                  <strong>120 000 DH</strong>
-                </div>
-              </article>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fill, minmax(280px, 1fr))",
+              gap: 20,
+            }}
+          >
+            {listings.map((listing) => (
+              <ListingCard
+                key={listing.id}
+                listing={listing}
+              />
             ))}
           </div>
         </section>
