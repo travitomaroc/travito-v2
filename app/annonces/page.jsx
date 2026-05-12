@@ -1,5 +1,6 @@
 import ListingCard from "../../src/components/listings/ListingCard";
 import { listings } from "../../src/data/seed/listings";
+import FilterSidebar from "../../src/components/filters/FilterSidebar";
 
 export default function AnnoncesPage() {
   return (
@@ -22,26 +23,7 @@ export default function AnnoncesPage() {
           alignItems: "flex-start",
         }}
       >
-        <aside
-          style={{
-            width: 280,
-            background: "#fff",
-            border: "1px solid #e5e5e5",
-            borderRadius: 16,
-            padding: 20,
-            position: "sticky",
-            top: 20,
-          }}
-        >
-          <h3>Filtres</h3>
-
-          <div style={{ marginTop: 20 }}>
-            <p>Catégorie</p>
-            <p>Ville</p>
-            <p>Prix</p>
-            <p>Avec photo</p>
-          </div>
-        </aside>
+<FilterSidebar />
 
         <section style={{ flex: 1 }}>
           <div
